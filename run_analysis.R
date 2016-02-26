@@ -33,6 +33,8 @@ subNameVector = (grepl("activity..",colNames) | grepl("subject..",colNames) | gr
 #Subset dataFinal using subNameVector to get only the desired colunms
 dataFinal <- dataFinal[subNameVector == TRUE]
 
+# 3. Use descriptive activity names to name the activities in the data set
+
 #Merge dataFinal with activityLabel to get descriptive activity names
 dataFinal <- merge(dataFinal, activityLabel, by = 'activityID', all.x = TRUE)
 
@@ -52,13 +54,13 @@ names(dataFinal) <- gsub("Mag", "Magnitude", names(dataFinal))
 # 5. Create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 # Create a new table by removing the activityType column
-dataFinalWOactType  = dataFinal[,names(dataFinal) != 'activityType'];
+dataFinalWOactType = dataFinal[,names(dataFinal) != 'activityType']
 
 # Aggregate dataFinalWOactType to get just the average of each variable for each activity and each subject
-tidyData    = aggregate(dataFinalWOactType[,names(dataFinalWOactType) != c('activityID','subjectID')],by=list(activityID=dataFinalWOactType$activityID,subjectID = dataFinalWOactType$subjectID),mean);
+tidyData = aggregate(dataFinalWOactType[,names(dataFinalWOactType) != c('activityID','subjectID')],by=list(activityID=dataFinalWOactType$activityID,subjectID = dataFinalWOactType$subjectID),mean)
 
 # Merge dataFinalWOactType with activityLabel to bring back activityType
-tidyData    = merge(tidyData,activityLabel,by='activityID',all.x=TRUE);
+tidyData = merge(tidyData,activityLabel,by='activityID',all.x=TRUE)
 
 # Export the tidyData set 
-write.table(tidyData, './tidyData.txt',row.names=TRUE,sep='\t');
+write.table(tidyData, './tidyData.txt',row.names=TRUE,sep='\t')
