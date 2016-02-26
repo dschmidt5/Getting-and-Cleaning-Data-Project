@@ -39,7 +39,7 @@ dataFinal <- dataFinal[subNameVector == TRUE]
 dataFinal <- merge(dataFinal, activityLabel, by = 'activityID', all.x = TRUE)
 
 #Create new column name vector to include new column names
-colNames <- colnames(dataFinal)
+#colNames <- colnames(dataFinal)
 
 # 4. Appropriately label the data set with descriptive variable names.
 
