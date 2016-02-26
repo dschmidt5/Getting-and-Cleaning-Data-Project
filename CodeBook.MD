@@ -81,3 +81,21 @@ Additional vectors obtained by averaging the signals in a signal window sample. 
 - tBodyGyroJerkMean
 
 The complete list of variables of each feature vector is available in 'features.txt'
+
+## Transformations
+
+1. Combined files to get one large data set. 
+  
+  - Combined x_train.txt and x_test.txt by row to create xData.
+  - Combined subject_train.txt and subject_test.txt by row to create subjectData.
+  - Combined y_train.txt and y_test.txt by row to create yData.
+  - Combined subjectData and yData by column to create dataCombined.
+  - Combined xData and dataCombined to create the final data set (dataFinal).
+
+2. Extracted only the ID, mean and standard deviation for each measure.
+
+3. Combined final data set with activity_labels.txt to get descriptive activity names.
+
+4. Renamed variables using gsub to get cleaner column names.
+
+5. Aggregated the final data set to get just the average of each variable for each activity and each subject (tidyData.txt).
